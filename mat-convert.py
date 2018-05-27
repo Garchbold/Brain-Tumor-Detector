@@ -16,22 +16,13 @@ if not os.path.exists(os.path.dirname(newDir)): #make new directory for all of t
 np.set_printoptions(threshold=np.inf)
 
 #print(sorted(os.listdir('braintumors_1')))
+	
+csvFileName = "brain_scan_data.csv"#csv that will hold each brain scan in one row
 
 for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files in braintumors_1 directory
 	currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
 	#print("Current mat file number: ", currMatFileNum) #e.g. "3064" from 3064.mat
 
-	csvFileName = "{}.csv".format(currMatFileNum) #fileName of new .csv to write to
-	#print("New csv filename: ", csvFileName) #e.g. "3064.csv" from 3064.mat
-
-	try:
-	   saveToFile = open("brain_csvs/{}".format(csvFileName), "w+") #actually open/make new .csv file to write to from each .mat file (file object)
-	except OSError as e: # race condition guard
-		if e.errno != errno.EEXIST:
-			raise
-		else:
-			raise e
-		#print(saveToFile)
 
 	try:
 		with h5py.File("braintumors_1/{}".format(file), 'r') as f: #open .mat file to save to new .csv file corresponding to that .mat file
