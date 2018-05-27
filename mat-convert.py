@@ -25,7 +25,7 @@ for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files
 	#print("New csv filename: ", csvFileName) #e.g. "3064.csv" from 3064.mat
 
 	try:
-	   saveToFile = open("brain_csvs/{}".format(csvFileName), "wb") #actually open/make new .csv file to write to from each .mat file (file object)
+	   saveToFile = open("brain_csvs/{}".format(csvFileName), "w+") #actually open/make new .csv file to write to from each .mat file (file object)
 	except OSError as e: # race condition guard
 		if e.errno != errno.EEXIST:
 			raise
