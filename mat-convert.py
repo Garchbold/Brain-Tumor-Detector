@@ -43,7 +43,7 @@ for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files
 	count += 1
 
 try:
-   np.savetxt(saveToFile, f['cjdata/image'].value, delimiter=',') #For formatting: https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.savetxt.html
+   np.savetxt(csvFileName, all_scan_array, delimiter=',') #For formatting: https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.savetxt.html
 except ValueError as e:
    print('Save failed! {}'.format(str(e)))
    raise SystemError
