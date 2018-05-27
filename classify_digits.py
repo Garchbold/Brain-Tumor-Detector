@@ -10,7 +10,7 @@ from sklearn import datasets, svm, metrics
 #dataset
 digits = datasets.load_digits()
 
-print("Digits Data: ", digits.data) #an array of 1797 arrays, each of these arrays inside the main array have size 64
+print("Digits Data: ", digits.data) #an array of 1797 arrays, each of these arrays inside the main array have size 64 (8x8 represenation of images)
 print("Digits Data type: ", type(digits.data))
 print("Digits Data list len: ", len(digits.data.tolist()[0]))
 print()
@@ -37,7 +37,8 @@ print("Digits Target length: ", len(digits.target.tolist())) #digits.target is a
 # the dataset.
 
 images_and_labels = list(zip(digits.images, digits.target))
-#print(images_and_labels) #creates a list of objects of the following form: 8x8 array with TARGET label number 8
+#print(images_and_labels) #creates a list of objects of the following form: 8x8 arrays with TARGET label number 8
+    #ONE array in the main list of 1797 arrays is below:
 '''(array([[ 0.,  0., 10., 14.,  8.,  1.,  0.,  0.],
 			   [ 0.,  2., 16., 14.,  6.,  1.,  0.,  0.],
 			   [ 0.,  0., 15., 15.,  8., 15.,  0.,  0.],
