@@ -10,6 +10,7 @@ from sklearn import datasets, svm, metrics
 #dataset
 digits = datasets.load_digits()
 
+print("Digits: ", digits)
 print("Digits Data: ", digits.data) #an array of 1797 arrays, each of these arrays inside the main array have size 64 (8x8 represenation of images)
 print("Digits Data type: ", type(digits.data))
 print("Digits Data list len: ", len(digits.data.tolist()[0]))
