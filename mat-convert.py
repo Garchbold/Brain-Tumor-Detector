@@ -21,7 +21,11 @@ csvFileName = "brain_scan_data.csv"#csv that will hold each brain scan in one ro
 all_scan_array = []
 count = 0
 
-for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files in braintumors_1 directory
+files = sorted(os.listdir('braintumors_1'))
+
+for file in files: #iterate through all .mat files in braintumors_1 directory
+	#if count > 10:
+	#	break
 	currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
 	print("Converting mat file number: "+ currMatFileNum) #e.g. "3064" from 3064.mat
 
@@ -34,6 +38,7 @@ for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files
 			scan_array_1d = []
 			for row in scan_array_2d:#convert the current brain scan array into one long array
 				scan_array_1d.extend(row)
+				#print(row)
 
 			all_scan_array.append(scan_array_1d)#append the scan_array_1d as one entry in the array of all scans
 	except:
@@ -43,34 +48,15 @@ for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files
 	count += 1
 
 try:
-   np.savetxt(csvFileName, all_scan_array, delimiter=',') #For formatting: https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.savetxt.html
+	print("Building ", csvFileName)
+	np.savetxt(csvFileName, all_scan_array, fmt='%i', delimiter=',') #For formatting: https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.savetxt.html
 except ValueError as e:
-   print('Save failed! {}'.format(str(e)))
-   raise SystemError
+	print('Save failed! {}'.format(str(e)))
+	raise SystemError
 except AttributeError as e:
-   print('Save failed! {}'.format(str(e)))
-   raise SystemError
-print("Converted "+count+" scans into one document.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	print('Save failed! {}'.format(str(e)))
+	raise SystemError
+print("Converted "+ str(count) + " scans into one document.")
 
 
 
