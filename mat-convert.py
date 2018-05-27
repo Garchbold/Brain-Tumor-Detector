@@ -19,6 +19,7 @@ np.set_printoptions(threshold=np.inf)
 	
 csvFileName = "brain_scan_data.csv"#csv that will hold each brain scan in one row
 all_scan_array = []
+count = 0
 
 for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files in braintumors_1 directory
 	currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
@@ -39,6 +40,7 @@ for file in sorted(os.listdir('braintumors_1')): #iterate through all .mat files
 		print("h5py failed!")
 		raise
 	print("Appending mat file number: "+ currMatFileNum)
+	count += 1
 
 try:
    np.savetxt(saveToFile, f['cjdata/image'].value, delimiter=',') #For formatting: https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.savetxt.html
@@ -48,7 +50,7 @@ except ValueError as e:
 except AttributeError as e:
    print('Save failed! {}'.format(str(e)))
    raise SystemError
-print("DONE")
+print("Converted "+count+" scans into one document.")
 
 
 
