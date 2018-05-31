@@ -86,9 +86,9 @@ def load_braintumors(n_class=4, return_X_y=False):
                  images=images,
                  DESCR=descr)
 
-a = load_braintumors()
+#a = load_braintumors()
 #print()
-print("Returned: ", a)
+#print("Returned: ", a)
 
 
 
