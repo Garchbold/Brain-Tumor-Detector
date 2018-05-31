@@ -6,7 +6,7 @@ from sklearn.utils import Bunch
 from sklearn.utils import check_random_state
 from mat_convert import setup_data
 
-def load_braintumors(n_class=2, return_X_y=False):
+def load_braintumors(n_class=4, return_X_y=False):
     """Load and return the digits dataset (classification).
     Each datapoint is a 8x8 image of a digit.
     =================   ==============
@@ -54,8 +54,8 @@ def load_braintumors(n_class=2, return_X_y=False):
     images.shape = (-1, 512, 512) #now images.shape is (num_images, 512, 512)
     print(images.shape)
 
-    if n_class < 2: #filter out any classes that shouldn't be considered
-        print("n_class is < 2")
+    if n_class < 4: #filter out any classes that shouldn't be considered
+        print("n_class is < 4")
         #print(target)
         filter_out_classes = target < n_class
         #print("filter_out_classes: ", filter_out_classes)
@@ -82,12 +82,12 @@ def load_braintumors(n_class=2, return_X_y=False):
         #'DESCR', the full description of the dataset.
     return Bunch(data=data_without_target,
                  target=target,
-                 target_names=np.arange(2),
+                 target_names=np.arange(4),
                  images=images,
                  DESCR=descr)
 
 a = load_braintumors()
-print()
+#print()
 print("Returned: ", a)
 
 

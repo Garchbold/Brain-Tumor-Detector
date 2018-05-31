@@ -25,21 +25,37 @@ def setup_data():
 	files = sorted(os.listdir('braintumors_1'))
 
 	for file in files: #iterate through all .mat files in braintumors_1 directory
-		if count > 10:
-			break
+		#if count > 50:
+		#	break
 		currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
 		print("Converting mat file number: "+ currMatFileNum) #e.g. "3064" from 3064.mat
 
+		#labels: 1 for meningioma, 2 for glioma, 3 for pituitary tumor
 		try:
 			with h5py.File("braintumors_1/{}".format(file), 'r') as f: #open .mat file to save to new .csv file corresponding to that .mat file
-				#print(saveToFile)
-				#print(f['cjdata/image'].value)
+
+				label = f['cjdata/label'].value[0][0] #label is of type numpy.float64
+
 				scan_array_2d = f['cjdata/image'].value
 				#print(scan_array_2d)
 				scan_array_1d = []
 				for row in scan_array_2d:#convert the current brain scan array into one long array
 					scan_array_1d.extend(row)
-				scan_array_1d.append(1) #target value for a brain that has a tumor
+				
+				if label == 1: #meningioma
+					scan_array_1d.append(1)
+				elif label == 2: #glioma
+					scan_array_1d.append(2)
+				elif label == 3: #pituitary tumor
+					scan_array_1d.append(3)
+				else: #label == 0, clean
+					scan_array_1d.append(0)
+
+				
+				#if count%2 == 0:
+				#	scan_array_1d.append(1) #target value for a brain that has a tumor
+				#else:
+				#	scan_array_1d.append(0) #target value for a brain that has a tumor
 				#print("1d: ", len(scan_array_1d))
 
 				all_scan_array.append(scan_array_1d)#append the scan_array_1d as one entry in the array of all scans
