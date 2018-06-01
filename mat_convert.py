@@ -22,11 +22,11 @@ def setup_data():
 	all_scan_array = []
 	count = 0
 
-	files = sorted(os.listdir('braintumors_1'))
+	files = sorted(os.listdir('braintumors_1'), key=lambda f: int(os.path.splitext(f)[0]))
 
 	for file in files: #iterate through all .mat files in braintumors_1 directory
-		#if count > 50:
-		#	break
+		if count > 500:
+			break
 		currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
 		print("Converting mat file number: "+ currMatFileNum) #e.g. "3064" from 3064.mat
 
@@ -48,8 +48,8 @@ def setup_data():
 					scan_array_1d.append(2)
 				elif label == 3: #pituitary tumor
 					scan_array_1d.append(3)
-				else: #label == 0, clean
-					scan_array_1d.append(0)
+				#else: #label == 0, clean
+				#	scan_array_1d.append(0)
 
 				
 				#if count%2 == 0:
