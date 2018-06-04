@@ -18,8 +18,8 @@ def setup_data():
 	files = sorted(os.listdir('braintumors_2'), key=lambda f: int(os.path.splitext(f)[0]))
 
 	for file in files: #iterate through all .mat files in braintumors_1 directory
-		if count > 1000:# and count < 2500:
-			break
+		#if count > 50:# and count < 2500:
+		#	break
 			#count+=1
 			#pass
 	
@@ -56,16 +56,16 @@ def setup_data():
 			scan_array_1d_no_targets = []
 
 			if label == 1: #meningioma
-				scan_array_1d.append(1)
+				scan_array_1d.append(("{}".format(file), 1))
 			elif label == 2: #glioma
-				scan_array_1d.append(2)
+				scan_array_1d.append(("{}".format(file), 2))
 			elif label == 3: #pituitary tumor
-				scan_array_1d.append(3)
+				scan_array_1d.append(("{}".format(file), 3))
 
 			#print("1d before: ", scan_array_1d)
 
-			for row in scan_array_2d:#convert the current brain scan array into one long array
-				scan_array_1d_no_targets.extend(row)
+			#for row in scan_array_2d:#convert the current brain scan array into one long array
+			#	scan_array_1d_no_targets.extend(row)
 			
 			#print("1d after: ", scan_array_1d)
 
@@ -105,7 +105,7 @@ def setup_data():
 	return (new_np_array, new_no_targets) #.astype(float)
 	#return np.random.permutation(new_np_array)
 
-#setup_data()
+setup_data()
 
 
 
