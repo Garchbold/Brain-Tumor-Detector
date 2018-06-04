@@ -272,7 +272,6 @@ Accuracy of model:  0.8038038038038038
 Nu SVC
 Trained: {1: 169, 2: 163, 3: 167}
 Predicted: {1: 155, 2: 128, 3: 217}
-Predicted nums (counts):  {1: 155, 2: 128, 3: 217}
 Classification report for nu classifier NuSVC(cache_size=200, class_weight=None, coef0=0.0,
    decision_function_shape='ovr', degree=3, gamma='auto', kernel='rbf',
    max_iter=-1, nu=0.5, probability=False, random_state=None,
@@ -318,8 +317,68 @@ Accuracy of model:  0.8078078078078078
 
 
 
+ANALYSIS:
+
+@@@ Comparison Between Each Model with Other Models @@@
+Each trained on Same # of Targets: {1: 144, 2: 154, 3: 201}
+	i.e. 144 meningioma, 152 glioma, 201 pituitary tumors
+SVC:
+	Predicted: {1: 121, 2: 224, 3: 155}
+	~84.18% accuracy
+
+Linear SVC:
+	Predicted: {1: 165, 2: 166, 3: 169}
+	~83.68% accuracy
+
+Nu SVC:
+	Predicted: {1: 142, 2: 130, 3: 228}
+	~73.98% accuracy
 
 
 
-	
+@@@ Comparison Between Each Model with Itself @@@
+
+SVC: 
+	Test 1:
+		Trained: {1: 181, 2: 162, 3: 156} i.e. 181 meningioma, 162 glioma, 156 pituitary tumors
+		Predicted: {1: 157, 2: 170, 3: 173}
+		~90.79% accuracy
+	Test 2: 
+		Trained: {1: 183, 2: 156, 3: 160} i.e. 183 meningioma, 156 glioma, 160 pituitary tumors
+		Predicted: {1: 159, 2: 162, 3: 179} 
+		~89.19% accuracy
+	Test 3:
+		Trained: {1: 161, 2: 171, 3: 167} i.e. 161 meningioma, 171 glioma, 167 pituitary tumors
+		Predicted: {1: 123, 2: 193, 3: 184}
+		~87.39% accuracy
+
+Linear SVC:
+	Test 1:
+		Trained: {1: 161, 2: 178, 3: 160} i.e. 161 meningioma, 178 glioma, 160 pituitary tumors
+		Predicted: {1: 160, 2: 155, 3: 185}
+		~88.79% accuracy
+	Test 2: 
+		Trained: {1: 178, 2: 158, 3: 163} i.e. 178 meningioma, 158 glioma, 163 pituitary tumors
+		Predicted: {1: 176, 2: 150, 3: 174}
+		~88.79% accuracy
+	Test 3:
+		Trained: {1: 176, 2: 165, 3: 158} i.e. 176 meningioma, 165 glioma, 158 pituitary tumors
+		Predicted: {1: 183, 2: 136, 3: 181}
+		~88.39% accuracy
+
+Nu SVC:
+	Test 1:
+		Trained: {1: 174, 2: 166, 3: 159} i.e. 174 meningioma, 166 glioma, 159 pituitary tumors
+		Predicted: {1: 171, 2: 121, 3: 208}
+		~80.38% accuracy
+	Test 2: 
+		Trained: {1: 169, 2: 163, 3: 167} i.e. 169 meningioma, 163 glioma, 167 pituitary tumors
+		Predicted: {1: 155, 2: 128, 3: 217}
+		~80.68% accuracy
+	Test 3:
+		Trained: {1: 176, 2: 155, 3: 168} i.e. 176 meningioma, 155 glioma, 168 pituitary tumors
+		Predicted: {1: 162, 2: 126, 3: 212}
+		~80.78% accuracy
+
+
 
