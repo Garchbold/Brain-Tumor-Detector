@@ -87,5 +87,5 @@ for index, (image, prediction) in enumerate(images_and_predictions[:4]):
     plt.title('Prediction: %i' % prediction)
 
 print("Accuracy of model: ", classifier.score(data, brains.target))
-plt.show() #comment this to avoid opening a graph
+#plt.show() #comment this to avoid opening a graph
 

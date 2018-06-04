@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Import classifiers and performance metrics
 from sklearn import svm, metrics
 
-from load_braintumors import load_braintumors
+from old_load_braintumors import load_braintumors
 
 #dataset
 brains = load_braintumors()
@@ -47,6 +47,7 @@ for index, (image, label) in enumerate(images_and_labels[:4]):
 n_samples = len(brains.images)
 data = brains.images.reshape((n_samples, -1)) # num_samples x 512*512 ndarray
 print(data)
+print("Data: ", data)
 
 # create a linear SVC
 linear_classifier = svm.LinearSVC()
@@ -56,8 +57,11 @@ linear_classifier = svm.LinearSVC()
 
 # learn based on first half of data
 linear_classifier.fit(data[:n_samples // 2], brains.target[:n_samples // 2]) #// is floor division
-print(data[:n_samples // 2][0]) #first half of the image data ~898 x 64
-print(brains.target[:n_samples // 2]) #first half of the target data ~898
+print("First half of data: ", data[:n_samples // 2][0]) #first half of the image data ~898 x 64
+print("First half of targets: ", brains.target[:n_samples // 2]) #first half of the target data ~898
+
+unique, counts = np.unique(brains.target[:n_samples // 2], return_counts=True)
+print(dict(zip(unique, counts)))
 
 print()
 print("....LINEAR SVC: Begin prediction on 2nd half of data.....")
@@ -80,7 +84,7 @@ for index, (image, prediction) in enumerate(images_and_predictions[:4]):
     plt.title('Prediction: %i' % prediction)
 
 print("Accuracy of model: ", linear_classifier.score(data, brains.target))
-plt.show() #comment this to avoid opening a graph
+#plt.show() #comment this to avoid opening a graph
 
 
 
