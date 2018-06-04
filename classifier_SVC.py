@@ -13,36 +13,33 @@ from load_braintumors import load_braintumors
 brains = load_braintumors()
 
 print("brains: ", brains)
-print("brains Data: ", brains.data) #an array of 1797 arrays, each of these arrays inside the main array have size 64 (8x8 represenation of images)
-print("brains Data type: ", type(brains.data))
+#print("brains Data: ", brains.data) #an array of 1797 arrays, each of these arrays inside the main array have size 64 (8x8 represenation of images)
+#print("brains Data type: ", type(brains.data))
 print("brains Data list len: ", len(brains.data.tolist()[0]))
-print()
+#print()
 print("brains Data Shape (# of rows, # of cols): ", brains.data.shape) #brains.data.shape represents (# of samples/images, dimemsionality i.e. 8x8 matrix of integers)
-print("brains Data Shape type: ", type(brains.data.shape))
-print()
+#print("brains Data Shape type: ", type(brains.data.shape))
+#print()
 #print("brains Images: ", brains.images) #brains.images is an array of multiple 2d arrays representing all 1797 images; each 2d array is 8x8 of integers
-print("brains Images type: ", type(brains.images))
+#print("brains Images type: ", type(brains.images))
 print("brains Images # of images: ", len(brains.images))
 print("brains Images # of rows: ", len(brains.images[0]))
 print("brains Images # of cols: ", len(brains.images[0][0]))
-print()
-print("brains Target: ", brains.target)
-print("brains Target type: ", type(brains.target))
+#print()
+#print("brains Target: ", brains.target)
+#print("brains Target type: ", type(brains.target))
 #print("brains Target list: ", brains.target.tolist())
 print("brains Target length: ", len(brains.target.tolist())) #brains.target is an ndarray of integers, each integer corresponding to what each image should represent (e.g. the first image should be 0)
 
 
-#new_target = np.random.permutation(brains.target)
-#print("New randomized target: ", new_target)
-
-images_and_labels = list(zip(brains.images, brains.target))
+#images_and_labels = list(zip(brains.images, brains.target))
 #print(images_and_labels) #creates a list of objects of the following form: 512x512 arrays with TARGET label number
 
-for index, (image, label) in enumerate(images_and_labels[:4]):
-    plt.subplot(2, 4, index + 1)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title('Training: %i' % label)
+#for index, (image, label) in enumerate(images_and_labels[:4]):
+#    plt.subplot(2, 4, index + 1)
+#    plt.axis('off')
+#    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+#    plt.title('Training: %i' % label)
 
 
 # reshape data
@@ -62,7 +59,6 @@ classifier.fit(data[:n_samples // 2], brains.target[:n_samples // 2]) #// is flo
 print("First half of data: ", data[:n_samples // 2][0]) #first half of the image data
 print("First half of targets: ", brains.target[:n_samples // 2]) #first half of the target data
 
-
 unique, counts = np.unique(brains.target[:n_samples // 2], return_counts=True)
 print(dict(zip(unique, counts)))
 
@@ -73,6 +69,9 @@ expected = brains.target[n_samples // 2:] #second half of the target data
 predicted = classifier.predict(data[n_samples // 2:]) #second half of image data
 print("Expected nums: ", expected)
 print("Predicted nums: ", predicted)
+
+unique2, counts2 = np.unique(predicted, return_counts=True)
+print("Predicted nums (counts): ", dict(zip(unique2, counts2)))
 
 print("Classification report for classifier %s:\n%s\n"
       % (classifier, metrics.classification_report(expected, predicted)))

@@ -40,12 +40,12 @@ def load_braintumors(n_class=3, return_X_y=False):
     #print("Data: ", data)
 
     target = data[:, -1].astype(np.int) #ndarray type, contains int64's; for all rows, slice and take only the last column which is the target data
-    print("Target: ", target)
+    #print("Target: ", target)
     #new_target = np.random.permutation(target)
     #print("New target: ", new_target)
 
     data_without_target = data[:, :-1] #ndarray type; for all rows, slice and take all columns EXCEPT the last column (the target data)
-    print("data_without_target: ", data_without_target)
+    #print("data_without_target: ", data_without_target)
     #print("Data no target length: ", len(data_without_target[0]))
     #print("length data: ", len(data[0]))
     
@@ -54,7 +54,7 @@ def load_braintumors(n_class=3, return_X_y=False):
 
     #images.shape at this point is equal to (1797, 64)
     images.shape = (-1, 512, 512) #now images.shape is (num_images, 512, 512)
-    print(images.shape)
+    print("(# of images, dim_x, dim_y: ", images.shape)
 
     if n_class < 3: #filter out any classes that shouldn't be considered
         print("n_class is < 3")

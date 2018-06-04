@@ -1,9 +1,9 @@
 import scipy.io
 import numpy as np
 import h5py
-import pandas as pd
 import os
 import errno
+from random import shuffle
 
 def setup_data():
 
@@ -21,12 +21,23 @@ def setup_data():
 
 	#files = sorted(os.listdir('braintumors_1'), key=lambda f: int(os.path.splitext(f)[0]))
 	files = os.listdir('braintumors_1')
+	#files2 = os.listdir('braintumors_1') #for testing randomized order
 
+	shuffle(files)
+	#shuffle(files2) #for testing randomized order
+	#print(files == files) #for testing randomized order
+	#print() 
+	#print("Files: ", files)
+	#print()
+	#print("Files2: ", files2)
+
+
+	print("Converting all mat files to arrays, please wait... (may take a few minutes)")
 	for file in files: #iterate through all .mat files in braintumors_1 directory
 		#if count > 400:
 		#	break
 		currMatFileNum = file.split('.')[0] #current file in braintumors_1 directory; splits 3064.mat into ['3064', 'mat']
-		print("Attemping to convert mat file number: "+ currMatFileNum) #e.g. "3064" from 3064.mat
+		#print("Attemping to convert mat file number: "+ currMatFileNum) #e.g. "3064" from 3064.mat
 
 		#labels: 1 for meningioma, 2 for glioma, 3 for pituitary tumor
 		try:
@@ -58,7 +69,7 @@ def setup_data():
 						count_3 += 1
 
 					all_scan_array.append(scan_array_1d)#append the scan_array_1d as one entry in the array of all scans
-					print("Success! Appending mat file number: "+ currMatFileNum)
+					#print("Success! Appending mat file number: "+ currMatFileNum)
 		except:
 			print("h5py failed!")
 			raise
