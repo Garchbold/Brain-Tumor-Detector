@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Import classifiers and performance metrics
 from sklearn import svm, metrics
 
-from old_load_braintumors import load_braintumors
+from load_braintumors import load_braintumors
 
 #dataset
 brains = load_braintumors()

@@ -4,7 +4,7 @@ import os
 import errno
 from sklearn.utils import Bunch
 from sklearn.utils import check_random_state
-from old_mat_convert import setup_data
+from mat_convert import setup_data
 
 def load_braintumors(n_class=3, return_X_y=False):
     """Load and return the digits dataset (classification).
