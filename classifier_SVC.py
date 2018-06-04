@@ -78,13 +78,13 @@ print("Classification report for classifier %s:\n%s\n"
       % (classifier, metrics.classification_report(expected, predicted)))
 print("Confusion matrix:\n%s" % metrics.confusion_matrix(expected, predicted))
 
-images_and_predictions = list(zip(brains.images[n_samples // 2:], predicted))
+#images_and_predictions = list(zip(brains.images[n_samples // 2:], predicted))
 
-for index, (image, prediction) in enumerate(images_and_predictions[:4]):
-    plt.subplot(2, 4, index + 5)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title('Prediction: %i' % prediction)
+#for index, (image, prediction) in enumerate(images_and_predictions[:4]):
+#    plt.subplot(2, 4, index + 5)
+#    plt.axis('off')
+#    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+#    plt.title('Prediction: %i' % prediction)
 
 print("Accuracy of model: ", classifier.score(data, brains.target))
 #plt.show() #comment this to avoid opening a graph
