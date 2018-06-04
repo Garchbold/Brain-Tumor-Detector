@@ -20,7 +20,7 @@ The image dataset can be found in **braintumors_1/**
 
 #### Usage: `python3 classifer_TYPE.py`
 - SVC: `classifer_SVC.py`
-- LinearSVC: `classifer_LinearSVC.py`
+- LinearSVC: `classifer_linearSVC.py`
 - NuSVC: `classifer_NuSVC.py`
 
 
