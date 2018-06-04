@@ -1,0 +1,10 @@
+srcFiles = dir('~/Desktop/CS168/Brain-Tumor-Detector/braintumors_1/*.mat');  % the folder in which ur images exists
+for i = 1 : length(srcFiles)
+filename = strcat('~/Desktop/CS168/Brain-Tumor-Detector/braintumors_1/',srcFiles(i).name);
+im = load(filename);
+imresize(im.cjdata.image, 0.25); 
+im.cjdata.image=[]; 
+im.cjdata.tumorMask=[];
+matfile=fullfile('~/Desktop/CS168/Brain-Tumor-Detector/braintumors_2/', srcFiles(i).name);
+save(matfile);
+end

@@ -6,7 +6,7 @@ from sklearn.utils import Bunch
 from sklearn.utils import check_random_state
 from mat_convert import setup_data
 
-def load_braintumors(n_class=4, return_X_y=False):
+def load_braintumors(n_class=3, return_X_y=False):
     """Load and return the digits dataset (classification).
     Each datapoint is a 8x8 image of a digit.
     =================   ==============
@@ -32,30 +32,36 @@ def load_braintumors(n_class=4, return_X_y=False):
     #   512*512 + 1 columns of integers per row:
     #       the first 512*512 columns should be split into 512 arrays of 512 integers; the last column is TARGET number (what integer each image actually represents and this should be predicted correctly)
 
-    data = setup_data()
+    data, no_targets = setup_data()
 
     print("\nBegin loading brain tumors...\n")
 
     descr = "Brain Tumor Image Classifier"
-    print("Data: ", data)
+    print("@Data: ", data)
+   # print(type(data))
+   # print(data[0])
+   # print(data[0][0])
 
-    target = data[:, -1].astype(np.int) #ndarray type, contains int64's; for all rows, slice and take only the last column which is the target data
-    print("Target: ", target)
+    target = data[:] #ndarray type, contains int64's; for all rows, slice and take only the last column which is the target data
+    print("@Target: ", target)
 
-    data_without_target = data[:, :-1] #ndarray type; for all rows, slice and take all columns EXCEPT the last column (the target data)
-    print("data_without_target: ", data_without_target)
-    #print("Data no target length: ", len(data_without_target[0]))
-    #print("length data: ", len(data[0]))
+    data_without_target = no_targets[:] #ndarray type; for all rows, slice and take all columns EXCEPT the last column (the target data)
+    print("@data_without_target: ", data_without_target)
+    print("type: ", type(data_without_target))
+    print("@Data no target length: ", len(data_without_target))
+    print("@length data: ", len(data))
     
     images = data_without_target.view() #same as data_without_target....
-    #print("images: ", images)
+    print("@images: ", images)
+    print("@images length: ", len(images))
 
+    print(images.shape)
     #images.shape at this point is equal to (1797, 64)
-    images.shape = (-1, 512, 512) #now images.shape is (num_images, 512, 512)
+    images.shape = (-1, 128, 128) #now images.shape is (num_images, 512, 512)
     print(images.shape)
 
-    if n_class < 4: #filter out any classes that shouldn't be considered
-        print("n_class is < 4")
+    if n_class < 3: #filter out any classes that shouldn't be considered
+        print("n_class is < 3")
         #print(target)
         filter_out_classes = target < n_class
         #print("filter_out_classes: ", filter_out_classes)
@@ -82,7 +88,7 @@ def load_braintumors(n_class=4, return_X_y=False):
         #'DESCR', the full description of the dataset.
     return Bunch(data=data_without_target,
                  target=target,
-                 target_names=np.arange(4),
+                 target_names=np.arange(1, 4),
                  images=images,
                  DESCR=descr)
 
