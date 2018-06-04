@@ -1,4 +1,4 @@
-# Brain-Tumor-Detector
+# Brain-Tumor-Classifier
 
 ### Classification of 3 different types of brain tumors using an MRI dataset and SciKit
 **Classification is accomplished via Support Vector Machines (supervised learning).**

@@ -21,16 +21,8 @@ def setup_data():
 
 	#files = sorted(os.listdir('braintumors_1'), key=lambda f: int(os.path.splitext(f)[0]))
 	files = os.listdir('braintumors_1')
-	#files2 = os.listdir('braintumors_1') #for testing randomized order
 
-	shuffle(files)
-	#shuffle(files2) #for testing randomized order
-	#print(files == files) #for testing randomized order
-	#print() 
-	#print("Files: ", files)
-	#print()
-	#print("Files2: ", files2)
-
+	shuffle(files) #COMMENT THIS OUT IF YOU WANT TO TEST ACCURACY BETWEEN THE DIFFERENT MODELS; KEEP IT TO TEST ACCURACY BETWEEN EACH INDIVIDUAL MODEL WITH THEMSELVES (don't compare different models), via MULTIPLE RUNS OF EACH MODEL 
 
 	print("Converting all mat files to arrays, please wait... (may take a few minutes)")
 	for file in files: #iterate through all .mat files in braintumors_1 directory

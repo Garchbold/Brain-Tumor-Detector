@@ -34,9 +34,9 @@ def load_braintumors(n_class=3, return_X_y=False):
 
     data = setup_data()
 
-    print("\nBegin loading brain tumors OLD...\n")
+    print("\nBegin loading brain tumors...\n")
 
-    descr = "Brain Tumor Image Classifier"
+    descr = "Loads image data and passes to specified Brain Tumor Image Classifier script."
     #print("Data: ", data)
 
     target = data[:, -1].astype(np.int) #ndarray type, contains int64's; for all rows, slice and take only the last column which is the target data

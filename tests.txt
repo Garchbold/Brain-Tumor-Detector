@@ -1,0 +1,325 @@
+Tumor Labels: 1=meningioma, 2=glioma, 3=pituitary tumor
+
+Contents: 
+3 tests of SVC with varying label counts
+3 tests of LinearSVC with varying label counts
+3 tests of NuSVC with varying label counts
+1 test of SVc, LinearSVC, and NuSVC with all the same label counts
+
+Classification Report Format explanation: http://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html#sklearn.metrics.precision_recall_fscore_support
+Confusion Matrix explanation: http://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html
+	 false positive - indicates that a label exists, when it does not
+	 false negative - indicates that a label does NOT exist, while in fact it does
+	 true positive - the proportion of actual labels that are correctly identified as such
+	 true negative -  the proportion of actual incorrect-labels that are correctly identified as such
+	 [
+	 [ c0c0 c0c1 c0c2]
+ 	 [ c1c0 c1c1 c1c2]
+ 	 [ c2c0 c2c1 c2c2] 
+ 	 ]
+
+
+FORMAT OF TESTS:
+----------------------- Start Test #
+SVC_TYPE
+Trained: {1: # OF 1'S TRAINED ON, 2: # OF 2'S TRAINED ON, 3: # OF 3'S TRAINED ON}
+Predicted: {1: # OF 1'S PREDICTED, 2: # OF 2'S PREDICTED, 3: # OF 3'S PREDICTED}
+CLASSIFICATION REPORT (with accuracy of model at end)
+----------------------- End Test #
+
+
+@@@BEGIN COMPARISON BETWEEN MODELS - i.e. same trained counts (same targets to train off of) for each model)@@@
+----------------------- Start Test 1
+SVC
+Trained: {1: 144, 2: 154, 3: 201} (same as Linear SVC and Nu SVC)
+Predicted: {1: 121, 2: 224, 3: 155}
+Classification report for classifier SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.79      0.51      0.62       189
+          2       0.64      0.80      0.71       179
+          3       0.73      0.86      0.79       132
+
+avg / total       0.72      0.71      0.70       500
+
+
+Confusion matrix:
+[[ 96  65  28]
+ [ 21 144  14]
+ [  4  15 113]]
+Accuracy of model:  0.8418418418418419
+----------------------- End Test 1
+----------------------- Start Test 2
+Linear SVC
+Trained: {1: 144, 2: 154, 3: 201} (same as SVC and Nu SVC)
+Predicted: {1: 165, 2: 166, 3: 169}
+Classification report for linear classifier LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0):
+             precision    recall  f1-score   support
+
+          1       0.68      0.59      0.63       189
+          2       0.70      0.65      0.68       179
+          3       0.64      0.82      0.72       132
+
+avg / total       0.68      0.67      0.67       500
+
+
+Confusion matrix:
+[[112  38  39]
+ [ 40 117  22]
+ [ 13  11 108]]
+Accuracy of model:  0.8368368368368369
+----------------------- End Test 2
+----------------------- Start Test 3
+Nu SVC
+Trained: {1: 144, 2: 154, 3: 201} (same as SVC and Linear SVC)
+Predicted: {1: 142, 2: 130, 3: 228}
+Classification report for nu classifier NuSVC(cache_size=200, class_weight=None, coef0=0.0,
+   decision_function_shape='ovr', degree=3, gamma='auto', kernel='rbf',
+   max_iter=-1, nu=0.5, probability=False, random_state=None,
+   shrinking=True, tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.62      0.47      0.53       189
+          2       0.77      0.56      0.65       179
+          3       0.55      0.95      0.69       132
+
+avg / total       0.65      0.63      0.62       500
+
+
+Confusion matrix:
+[[ 88  30  71]
+ [ 47 100  32]
+ [  7   0 125]]
+Accuracy of model:  0.7397397397397397
+----------------------- End Test 3
+
+
+
+
+@@@BEGIN SVC (compare between SVC runs ONLY w/ VARYING TARGETS)@@@
+----------------------- Start Test 1
+SVC
+Trained: {1: 181, 2: 162, 3: 156}
+Predicted: {1: 157, 2: 170, 3: 173}
+Classification report for classifier SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.77      0.80      0.78       152
+          2       0.81      0.81      0.81       171
+          3       0.92      0.90      0.91       177
+
+avg / total       0.84      0.84      0.84       500
+
+
+Confusion matrix:
+[[121  24   7]
+ [ 26 138   7]
+ [ 10   8 159]]
+ Accuracy of model:  0.9079079079079079
+----------------------- End Test 1
+----------------------- Start Test 2
+SVC
+Trained: {1: 183, 2: 156, 3: 160}
+Predicted: {1: 159, 2: 162, 3: 179}
+Classification report for classifier SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.72      0.76      0.74       150
+          2       0.85      0.78      0.81       177
+          3       0.86      0.89      0.88       173
+
+avg / total       0.81      0.81      0.81       500
+
+
+Confusion matrix:
+[[114  22  14]
+ [ 28 138  11]
+ [ 17   2 154]]
+Accuracy of model:  0.8918918918918919
+----------------------- End Test 2
+----------------------- Start Test 3
+SVC
+Trained: {1: 161, 2: 171, 3: 167}
+Predicted: {1: 123, 2: 193, 3: 184}
+Classification report for classifier SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.85      0.60      0.71       172
+          2       0.69      0.83      0.75       162
+          3       0.82      0.91      0.86       166
+
+avg / total       0.79      0.78      0.77       500
+
+
+Confusion matrix:
+[[104  50  18]
+ [ 13 134  15]
+ [  6   9 151]]
+Accuracy of model:  0.8738738738738738
+----------------------- End Test 3
+
+@@@BEGIN LINEAR SVC (compare between LINEAR SVC runs ONLY w/ VARYING TARGETS)@@@
+----------------------- Start Test 4
+Linear SVC
+Trained: {1: 161, 2: 178, 3: 160}
+Predicted: {1: 160, 2: 155, 3: 185}
+Classification report for linear classifier LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0):
+             precision    recall  f1-score   support
+
+          1       0.76      0.71      0.73       172
+          2       0.74      0.74      0.74       155
+          3       0.82      0.88      0.85       173
+
+avg / total       0.77      0.78      0.77       500
+
+
+Confusion matrix:
+[[122  35  15]
+ [ 23 114  18]
+ [ 15   6 152]]
+Accuracy of model:  0.8878878878878879
+----------------------- End Test 4
+----------------------- Start Test 5
+Linear SVC
+Trained: {1: 178, 2: 158, 3: 163}
+Predicted: {1: 176, 2: 150, 3: 174}
+Classification report for linear classifier LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0):
+             precision    recall  f1-score   support
+
+          1       0.69      0.78      0.73       155
+          2       0.83      0.71      0.77       175
+          3       0.82      0.84      0.83       170
+
+avg / total       0.78      0.78      0.78       500
+
+
+Confusion matrix:
+[[121  16  18]
+ [ 36 125  14]
+ [ 19   9 142]]
+Accuracy of model:  0.8878878878878879
+----------------------- End Test 5
+----------------------- Start Test 6
+Linear SVC
+Trained: {1: 176, 2: 165, 3: 158}
+Predicted: {1: 183, 2: 136, 3: 181}
+Classification report for linear classifier LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0):
+             precision    recall  f1-score   support
+
+          1       0.66      0.76      0.71       157
+          2       0.84      0.68      0.75       168
+          3       0.83      0.86      0.84       175
+
+avg / total       0.78      0.77      0.77       500
+
+
+Confusion matrix:
+[[120  21  16]
+ [ 39 114  15]
+ [ 24   1 150]]
+Accuracy of model:  0.8838838838838838
+----------------------- End Test 6
+
+@@@BEGIN Nu SVC (compare between NU SVC runs ONLY w/ VARYING TARGETS)@@@
+----------------------- Start Test 7
+Nu SVC
+Trained: {1: 174, 2: 166, 3: 159}
+Predicted: {1: 171, 2: 121, 3: 208}
+Classification report for nu classifier NuSVC(cache_size=200, class_weight=None, coef0=0.0,
+   decision_function_shape='ovr', degree=3, gamma='auto', kernel='rbf',
+   max_iter=-1, nu=0.5, probability=False, random_state=None,
+   shrinking=True, tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.67      0.72      0.70       159
+          2       0.84      0.61      0.71       167
+          3       0.79      0.94      0.86       174
+
+avg / total       0.77      0.76      0.76       500
+
+
+Confusion matrix:
+[[115  19  25]
+ [ 46 102  19]
+ [ 10   0 164]]
+Accuracy of model:  0.8038038038038038
+----------------------- End Test 7
+----------------------- Start Test 8
+Nu SVC
+Trained: {1: 169, 2: 163, 3: 167}
+Predicted: {1: 155, 2: 128, 3: 217}
+Predicted nums (counts):  {1: 155, 2: 128, 3: 217}
+Classification report for nu classifier NuSVC(cache_size=200, class_weight=None, coef0=0.0,
+   decision_function_shape='ovr', degree=3, gamma='auto', kernel='rbf',
+   max_iter=-1, nu=0.5, probability=False, random_state=None,
+   shrinking=True, tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.74      0.70      0.72       164
+          2       0.88      0.66      0.76       170
+          3       0.74      0.97      0.84       166
+
+avg / total       0.79      0.78      0.77       500
+
+
+Confusion matrix:
+[[115  15  34]
+ [ 35 113  22]
+ [  5   0 161]]
+ Accuracy of model:  0.8068068068068068
+----------------------- End Test 8
+----------------------- Start Test 9
+Nu SVC
+Trained: {1: 176, 2: 155, 3: 168}
+Predicted: {1: 162, 2: 126, 3: 212}
+Classification report for nu classifier NuSVC(cache_size=200, class_weight=None, coef0=0.0,
+   decision_function_shape='ovr', degree=3, gamma='auto', kernel='rbf',
+   max_iter=-1, nu=0.5, probability=False, random_state=None,
+   shrinking=True, tol=0.001, verbose=False):
+             precision    recall  f1-score   support
+
+          1       0.68      0.70      0.69       157
+          2       0.86      0.61      0.71       178
+          3       0.77      0.99      0.86       165
+
+avg / total       0.77      0.76      0.75       500
+
+
+Confusion matrix:
+[[110  18  29]
+ [ 50 108  20]
+ [  2   0 163]]
+Accuracy of model:  0.8078078078078078
+----------------------- End Test 9
+
+
+
+
+
+
+	
+
