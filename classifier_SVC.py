@@ -32,8 +32,8 @@ print("brains Target type: ", type(brains.target))
 print("brains Target length: ", len(brains.target.tolist())) #brains.target is an ndarray of integers, each integer corresponding to what each image should represent (e.g. the first image should be 0)
 
 
-new_target = np.random.permutation(brains.target)
-print("New randomized target: ", new_target)
+#new_target = np.random.permutation(brains.target)
+#print("New randomized target: ", new_target)
 
 images_and_labels = list(zip(brains.images, brains.target))
 #print(images_and_labels) #creates a list of objects of the following form: 512x512 arrays with TARGET label number

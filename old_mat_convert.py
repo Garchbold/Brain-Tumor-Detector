@@ -34,7 +34,7 @@ def setup_data():
 
 				label = f['cjdata/label'].value[0][0] #label is of type numpy.float64
 
-				scan_array_2d = f['cjdata/image'].value
+				scan_array_2d = f['cjdata/tumorMask'].value
 				#print(scan_array_2d)
 				if (len(scan_array_2d)) != 512:
 					print("Failed to convert mat file number {}, incorrect format!".format(currMatFileNum))
