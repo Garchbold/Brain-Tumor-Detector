@@ -48,7 +48,7 @@ for index, (image, label) in enumerate(images_and_labels[:4]):
 # reshape data
 n_samples = len(brains.images)
 data = brains.images.reshape((n_samples, -1)) # num_samples x 512*512 ndarray
-print(data)
+print("Data: ", data)
 
 # create a normal SVC
 classifier = svm.SVC(gamma=0.001) #0.001 is a good value; any higher or lower gives worse results
@@ -59,8 +59,12 @@ print(classifier)
 
 # learn based on first half of data
 classifier.fit(data[:n_samples // 2], brains.target[:n_samples // 2]) #// is floor division
-print(data[:n_samples // 2][0]) #first half of the image data ~898 x 64
-print(brains.target[:n_samples // 2]) #first half of the target data ~898
+print("First half of data: ", data[:n_samples // 2][0]) #first half of the image data
+print("First half of targets: ", brains.target[:n_samples // 2]) #first half of the target data
+
+
+unique, counts = np.unique(brains.target[:n_samples // 2], return_counts=True)
+print(dict(zip(unique, counts)))
 
 print()
 print("....SVC: Begin prediction on 2nd half of data.....")

@@ -19,7 +19,8 @@ def setup_data():
 	count_2 = 0
 	count_3 = 0
 
-	files = sorted(os.listdir('braintumors_1'), key=lambda f: int(os.path.splitext(f)[0]))
+	#files = sorted(os.listdir('braintumors_1'), key=lambda f: int(os.path.splitext(f)[0]))
+	files = os.listdir('braintumors_1')
 
 	for file in files: #iterate through all .mat files in braintumors_1 directory
 		#if count > 400:
