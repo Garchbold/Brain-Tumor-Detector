@@ -319,6 +319,8 @@ Accuracy of model:  0.8078078078078078
 
 ANALYSIS:
 
+These three methods were tested on 999 MRI scans of brains with tumors. There are three kinds of tumors (meningioma, glioma, pituitary tumors), with 333 images of each type of tumor.
+
 @@@ Comparison Between Each Model with Other Models @@@
 Each trained on Same # of Targets: {1: 144, 2: 154, 3: 201}
 	i.e. 144 meningioma, 152 glioma, 201 pituitary tumors
@@ -333,6 +335,10 @@ Linear SVC:
 Nu SVC:
 	Predicted: {1: 142, 2: 130, 3: 228}
 	~73.98% accuracy
+
+Analysis for Comparison Between Models:
+Comparing the three methods, it appears that the C-Support Vector Classification (SVC) method was the most accurate at around 84.18% correct classifications, with the Linear Support Vector Classification (Linear SVC) method coming in second place at around 83.68% correct classifications. The Nu-Support Vector Classification (Nu SVC) method did the worst at around 73.98% correct classifications.
+
 
 
 
@@ -379,6 +385,18 @@ Nu SVC:
 		Trained: {1: 176, 2: 155, 3: 168} i.e. 176 meningioma, 155 glioma, 168 pituitary tumors
 		Predicted: {1: 162, 2: 126, 3: 212}
 		~80.78% accuracy
+
+Analysis for Models individually:
+The C-Support Vector Classification (SVC) method was tested on three runs with varying target training data. SVC had between 87.39% and 90.79% accuracy for correct classifications.
+The Linear Support Vector Classification (Linear SVC) method was tested on three runs with varying target training data. Linear SVC had between 88.39% and 88.79% accuracy for correct classifications.
+The Nu-Support Vector Classification (Nu SVC) method was tested on three runs with varying target training data. Nu SVC had between 80.38% and 80.78% accuracy for correct classifications.
+
+
+Overall Analysis:
+
+Overall, it is evident that C-Support Vector Classification is more accurate in correct classification of these three brain tumors. It is 0.5% more accurate than the Linear Support Vector Classification method, and 7.5% more accurate than the Nu-Support Vector Classification method, when taught with the same target data.
+
+Individually, SVC can still perform better (more accurately classify brain tumor images) than both Linear SVC and Nu SVC. However, SVC's classification accuracy is more unstable (has more spread), with a range between 87.39% and 90.79% accuracy (3.4% difference/spread in tests). Linear SVC performed worse than SVC and better than Nu SVC, but it's classification accuracy has less spread than SVC, with a range between 88.39% and 88.79% accuracy (0.4% difference/spread in tests). Nu SVC performs the worst, but it's classification accuracy beats that of SVC and is roughly the same as Linear SVC, with a range between 80.38% and 80.78% accuracy (0.4% difference/spread in tests).
 
 
 
