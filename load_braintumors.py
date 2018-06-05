@@ -7,27 +7,7 @@ from sklearn.utils import check_random_state
 from mat_convert import setup_data
 
 def load_braintumors(n_class=3, return_X_y=False):
-    """Load and return the digits dataset (classification).
-    Each datapoint is a 8x8 image of a digit.
-    =================   ==============
-    Classes                         2
-    Samples per class               UNKNOWN (TODO)
-    Samples total                   767
-    Dimensionality                  262144
-    Features                        (TODO)
-    =================   ==============
-    Read more in the :ref:`User Guide <datasets>`.
-    Parameters
-    ----------
-    n_class : integer, between 0 and 1, optional (default=1)
-        The number of classes to return.
-    return_X_y : boolean, default=False.
-        If True, returns ``(data, target)`` instead of a Bunch object.
-        See below for more information about the `data` and `target` object.
-        .. versionadded:: 0.18
-    """
 
-    #print(data) #~700 rows, 512*512 + 1 columns
     #data: each row represents an image encoded in the following way: 
     #   512*512 + 1 columns of integers per row:
     #       the first 512*512 columns should be split into 512 arrays of 512 integers; the last column is TARGET number (what integer each image actually represents and this should be predicted correctly)
@@ -88,6 +68,3 @@ def load_braintumors(n_class=3, return_X_y=False):
                  images=images,
                  DESCR=descr)
 
-#a = load_braintumors()
-#print()
-#print("Returned: ", a)
